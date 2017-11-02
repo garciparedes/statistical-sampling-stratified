@@ -19,19 +19,19 @@
   \section{Introducción}
 
     \paragraph{}
-    En este trabajo se realizarán distintas demostraciones relacionadas con la estimación del estadístico \emph{total poblacional} denotado por $Tau$ sobre una metodología muestral basada en \emph{muestreo estratificado} en el que en cada estrato se extrae una \emph{muestra aleatoria simple (m.a.s.)}.
+    En este trabajo se realizarán distintas demostraciones relacionadas con la estimación del estadístico \emph{total poblacional} denotado por $\Tau$ sobre una metodología muestral basada en \emph{muestreo estratificado} en el que en cada estrato se extrae una \emph{muestra aleatoria simple (m.a.s.)}.
 
     \paragraph{}
-    Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L$ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, podemos denotar a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$
+    Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L = \{1, ...,k,...,N\} $ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, podemos denotar a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$
 
     \paragraph{}
     En este caso, tal y como se ha indicado anteriormente se va a presuponer la utilización del método \emph{m.a.s.} sobre cada estrato, caracterizado porque el tamaño de la muestra se fija \emph{a-priori} y se seleccionan las observaciones \emph{sin reemplazamiento}, es decir, una vez seleccionada una observación, esta desaparece del conjunto de candidatos a aparecer en la muestra. Por tanto, no hay observaciones repetidas en la muestra.
 
     \paragraph{}
-    [TODO hablar de tau]
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum_U y_k$.
 
     \paragraph{}
-    [TODO hablar de tau en m.a.s.]
+    En el caso del \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible del total poblacional $\Tau$, es necesario apoyarse en los valores del tamaño de la población $N$ y el de la muestra $s$ denotado por $N_s$ y $\pi_k = \frac{N_s}{N}$ definido como el cociente entre ellos. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum_s \frac{y_k}{\pi_k}$.
 
 
   \section{Obtener la expresión del tamaño de muestra en cada estrato si suponemos afijación mínima varianza,  m.a.s. en todos los estratos, conocido el tamaño de muestra n global y tomamos el parámetro total de la variable de interés}
