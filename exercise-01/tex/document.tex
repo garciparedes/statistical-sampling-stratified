@@ -28,7 +28,7 @@
     En este caso, tal y como se ha indicado anteriormente se va a presuponer la utilización del método \emph{m.a.s.} sobre cada estrato, caracterizado porque el tamaño de la muestra se fija \emph{a-priori} y se seleccionan las observaciones \emph{sin reemplazamiento}, es decir, una vez seleccionada una observación, esta desaparece del conjunto de candidatos a aparecer en la muestra. Por tanto, no hay observaciones repetidas en la muestra.
 
     \paragraph{}
-    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum_U y_k$.
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum\limits_U y_k$.
 
     \paragraph{}
     En el caso del \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible del total poblacional $\Tau$, es necesario apoyarse en los valores del tamaño de la población $N$, el del estrato $U_h$ como $N_h$ y el de la muestra $s_h$ denotado por $n_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. También se define el tamaño relativo de la muestra como $f_h = \frac{n_h}{N_h}$. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum\limits_{s_h} \frac{y_k}{W_h}$.
@@ -38,10 +38,10 @@
 
     \begin{align}
       Var(\widehat{\Tau_h}) &= \\
-      &=\frac{N_h^2 (1-f_h)\sigma_h^{2}}{n_h} \\
-      &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2}}{n_h} \\
-      &= \frac{(N_h^2- N_hn_h)\sigma_h^{2}}{n_h} \\
-      &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2} \\
+      &=\frac{N_h^2 (1-f_h)\sigma_h^{2*}}{n_h} \\
+      &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2*}}{n_h} \\
+      &= \frac{(N_h^2- N_hn_h)\sigma_h^{2*}}{n_h} \\
+      &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*} \\
     \end{align}
 
     \paragraph{}
@@ -55,7 +55,7 @@
       El problema se presenta como la obtención del tamaño óptimo $n_h \quad h \in \{1,..., L\}$ que minimice la varianza global (\textbf{afijación de mínima varianza}) de la estimación, suponiendo como valor conocido $N$ para la obtención del mejor estimador de un determinado estadístico. Definiremos la función $\phi(n_1, ..., n_L)$ como:
 
       \begin{equation}
-        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( \sum_{h=1}^L n_h - n\right)
+        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)
       \end{equation}
 
       \paragraph{}
@@ -70,7 +70,7 @@
       Para obtener dicho mínimo se pueden utilizar distintas técnicas, sin embargo, en este caso basta con la búsqueda del punto que hace nulo el valor de la derivada, tal y como se verá a continuación.
 
       \begin{equation}
-        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( \sum_{h=1}^L n_h - n\right)
+        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)
       \end{equation}
 
 
@@ -81,9 +81,9 @@
       \label{eq:derivate_1}
         \begin{split}
           \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
-          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2}
-          + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
-          &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda \\
+          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*}
+          + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
+          &= \frac{-N_h^2 \sigma_h^{2*}}{n_h^2} +\lambda \\
           &= 0
         \end{split}
       \end{align}
@@ -92,7 +92,7 @@
       Puesto que $n_1 + ... + n_L = n$ se obtiene:
 
       \begin{align}
-        \sqrt{\lambda} &= \frac{\sum_{h=1}^L N_h \sigma_h }{n}
+        \sqrt{\lambda} &= \frac{\sum\limits_{h=1}^L N_h \sigma_h^{*}}{n}
       \end{align}
 
       \paragraph{}
@@ -101,9 +101,9 @@
       \begin{align}
         \begin{split}
           n_h &= \\
-          &= \frac{N_h \sigma_h}{\sqrt{\lambda}}\\
-          &= \frac{N_h \sigma_h}{\frac{\sum_{h=1}^L N_h \sigma_h }{n}}\\
-          &= \frac{n N_h \sigma_h}{\sum_{h=1}^L N_h \sigma_h }
+          &= \frac{N_h \sigma_h^{*}}{\sqrt{\lambda}}\\
+          &= \frac{N_h \sigma_h^{*}}{\frac{\sum\limits_{h=1}^L N_h \sigma_h^{*} }{n}}\\
+          &= \frac{n N_h \sigma_h^{*}}{\sum\limits_{h=1}^L N_h \sigma_h^{*} }
         \end{split}
       \end{align}
 
@@ -111,10 +111,10 @@
     \label{sec:dem_2}
 
       \paragraph{}
-      También se puede considerear el mismo problema apoyandonos en una función coste en lugar del valor del tamaño poblacional $n$. Para ello, se define el coste como $C = C_0 + \sum_{h=1}^LC_hn_h$ de tal manera que se presupone un coste constante $C_0$ y un coste para cada estrato $C_h$. Suponemos el valor $C$ como conocido y lo denominaremos presupuesto. Entonces ahora la función a minimizar se transforma en:
+      También se puede considerear el mismo problema apoyandonos en una función coste en lugar del valor del tamaño poblacional $n$. Para ello, se define el coste como $C = C_0 + \sum\limits_{h=1}^LC_hn_h$ de tal manera que se presupone un coste constante $C_0$ y un coste para cada estrato $C_h$. Suponemos el valor $C$ como conocido y lo denominaremos presupuesto. Entonces ahora la función a minimizar se transforma en:
 
       \begin{equation}
-        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( C_0 \sum_{h=1}^LC_hn_h - C\right)
+        \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( C_0 \sum\limits_{h=1}^LC_hn_h - C\right)
       \end{equation}
 
       \paragraph{}
@@ -124,18 +124,18 @@
       \label{eq:derivate_2}
         \begin{split}
           \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
-          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2}
-          + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
-          &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda C_h\\
+          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*}
+          + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
+          &= \frac{-N_h^2 \sigma_h^{2*}}{n_h^2} +\lambda C_h\\
           &= 0
         \end{split}
       \end{align}
 
       \paragraph{}
-      Subtituyendo $n_h$ en la expresión $C = C_0 + \sum_{h=1}^LC_hn_h$ se obtiene:
+      Subtituyendo $n_h$ en la expresión $C = C_0 + \sum\limits_{h=1}^LC_hn_h$ se obtiene:
 
       \begin{align}
-        \sqrt{\lambda} &= \frac{\sum_{h=1}^L N_h \sigma_h \sqrt{C_h} }{C - C_0}
+        \sqrt{\lambda} &= \frac{\sum\limits_{h=1}^L N_h \sigma_h^{*} \sqrt{C_h} }{C - C_0}
       \end{align}
 
       \paragraph{}
@@ -144,8 +144,8 @@
       \begin{align}
         \begin{split}
           n_h &= \\
-          &= \frac{N_h \sigma_h}{\sqrt{\lambda}}\\
-          &= \frac{N_h \sigma_h}{\frac{\sum_{h=1}^L N_h \sigma_h \sqrt{C_h} }{C - C_0}}
+          &= \frac{N_h \sigma_h^{*}}{\sqrt{\lambda}}\\
+          &= \frac{N_h \sigma_h^{*}}{\frac{\sum\limits_{h=1}^L N_h \sigma_h^{*} \sqrt{C_h} }{C - C_0}}
         \end{split}
       \end{align}
 
