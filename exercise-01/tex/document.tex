@@ -37,7 +37,7 @@
     La varianza del estimador del total sobre cada estrato se define a continuación:
 
     \begin{align}
-      Var(\widehat{\Tau_h}) =& \frac{N_h^2 \sigma_h^{2}}{n_h}
+      Var(\widehat{\Tau_h}) &= \frac{N_h^2 \sigma_h^{2}}{n_h}
     \end{align}
 
     \paragraph{}
@@ -59,7 +59,7 @@
       Entonces el objetivo es minimizar dicha función, de tal manera que se minimiza la varianza global de la estimación $\widehat{\theta}$. Esto es equivalente a buscar los valores que hagan mínima dicha función, es decir:
 
       \begin{equation}
-        min\{\phi(n_1, ..., n_L)\}
+        min_{n_h}\{\phi(n_1, ..., n_L)\}
       \end{equation}
 
       \paragraph{}
@@ -76,20 +76,20 @@
       \begin{align}
       \label{eq:derivate_1}
         \begin{split}
-          \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} =& \\
-          =& \frac{\partial\left( \frac{N_h^2 \sigma_h^{2}}{n_h}
+          \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
+          &= \frac{\partial\left( \frac{N_h^2 \sigma_h^{2}}{n_h}
           + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
-          =& \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda \\
-          =& \left(\frac{-N_h \sigma_h}{n_h}\right)^2 +\lambda \\
-          =& 0
+          &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda \\
+          &= \left(\frac{-N_h \sigma_h}{n_h}\right)^2 +\lambda \\
+          &= 0
         \end{split}
       \end{align}
 
       \paragraph{}
-      Puesto que $n_1 + ... + n_L = n$ se obtiene que:
+      Puesto que $n_1 + ... + n_L = n$ se obtiene:
 
       \begin{align}
-        \sqrt{\lambda} =& \frac{\sum_{h=1}^L N_h \sigma_h }{n}
+        \sqrt{\lambda} &= \frac{\sum_{h=1}^L N_h \sigma_h }{n}
       \end{align}
 
       \paragraph{}
@@ -97,10 +97,10 @@
 
       \begin{align}
         \begin{split}
-          n_h =& \\
-          =& \frac{N_h \sigma_h}{\sqrt{\lambda}}\\
-          =& \frac{N_h \sigma_h}{\frac{\sum_{h=1}^L N_h \sigma_h }{n}}\\
-          =& \frac{n N_h \sigma_h}{\sum_{h=1}^L N_h \sigma_h }
+          n_h &= \\
+          &= \frac{N_h \sigma_h}{\sqrt{\lambda}}\\
+          &= \frac{N_h \sigma_h}{\frac{\sum_{h=1}^L N_h \sigma_h }{n}}\\
+          &= \frac{n N_h \sigma_h}{\sum_{h=1}^L N_h \sigma_h }
         \end{split}
       \end{align}
 
@@ -120,16 +120,20 @@
       \begin{align}
       \label{eq:derivate_2}
         \begin{split}
-          \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} =& \\
-          =& 0
+          \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
+          &= \frac{\partial\left( \frac{N_h^2 \sigma_h^{2}}{n_h}
+          + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
+          &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda C_h\\
+          &= \left(\frac{-N_h \sigma_h}{n_h}\right)^2 +\lambda C_h \\
+          &= 0
         \end{split}
       \end{align}
 
       \paragraph{}
-      [TODO ]
+      Subtituyendo $n_h$ en la expresión $C = C_0 + \sum_{h=1}^LC_hn_h$ se obtiene:
 
       \begin{align}
-        \sqrt{\lambda} =&
+        \sqrt{\lambda} &= \frac{\sum_{h=1}^L N_h \sigma_h \sqrt{C_h} }{C - C_0}
       \end{align}
 
       \paragraph{}
@@ -137,8 +141,9 @@
 
       \begin{align}
         \begin{split}
-          n_h =& \\
-          =&
+          n_h &= \\
+          &= \frac{N_h \sigma_h}{\sqrt{\lambda}}\\
+          &= \frac{N_h \sigma_h}{\frac{\sum_{h=1}^L N_h \sigma_h \sqrt{C_h} }{C - C_0}}
         \end{split}
       \end{align}
 
