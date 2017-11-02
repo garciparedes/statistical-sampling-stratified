@@ -37,7 +37,11 @@
     La varianza del estimador del total sobre cada estrato se define a continuación:
 
     \begin{align}
-      Var(\widehat{\Tau_h}) &= \frac{N_h^2 \sigma_h^{2}}{n_h}
+      Var(\widehat{\Tau_h}) &= \\
+      &=\frac{N_h^2 (1-f_h)\sigma_h^{2}}{n_h} \\
+      &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2}}{n_h} \\
+      &= \frac{(N_h^2- N_hn_h)\sigma_h^{2}}{n_h} \\
+      &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2} \\
     \end{align}
 
     \paragraph{}
@@ -77,10 +81,9 @@
       \label{eq:derivate_1}
         \begin{split}
           \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
-          &= \frac{\partial\left( \frac{N_h^2 \sigma_h^{2}}{n_h}
+          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2}
           + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
           &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda \\
-          &= \left(\frac{-N_h \sigma_h}{n_h}\right)^2 +\lambda \\
           &= 0
         \end{split}
       \end{align}
@@ -121,10 +124,9 @@
       \label{eq:derivate_2}
         \begin{split}
           \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
-          &= \frac{\partial\left( \frac{N_h^2 \sigma_h^{2}}{n_h}
+          &= \frac{\partial\left( \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2}
           + \lambda \left( \sum_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
           &= \frac{-N_h^2 \sigma_h^{2}}{n_h^2} +\lambda C_h\\
-          &= \left(\frac{-N_h \sigma_h}{n_h}\right)^2 +\lambda C_h \\
           &= 0
         \end{split}
       \end{align}
