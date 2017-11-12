@@ -15,15 +15,123 @@
   %  TEXT
   %-----------------------------
 
+  \abstract{En este trabajo se desarrollan las expresiones del tamaño de muestra $n$ global para estimar la media poblacional $\widehat{\mu}$ fijado un error de estimación global $B$ y una confianza $(1-\alpha)$ para \emph{m.a.s.} con y sin reemplazamiento}
+
   \section{Introducción}
 
     \paragraph{}
-    [TODO ]
-
-  \section{Determinar la expresión del tamaño de muestra $n$ global para estimar la media poblacional fijado un error de estimación global $B$ y una confianza $(1-\alpha)$ para \emph{m.a.s.} con y sin reemplazamiento.}
+    Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L = \{1, ...,k,...,N\} $ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, podemos denotar a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$.
 
     \paragraph{}
-    [TODO]
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum_U y_k$.
+
+    \paragraph{}
+    Denotaremos por $\mu$ a la media poblacional de una determinada variable de interés $Y$ de carácter binario denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que la media poblacional se define como $\mu = \frac{\sum_U y_k}{N} = \frac{\Tau}{N}$.
+
+    \paragraph{}
+    Sea $N$ el tamaño de la población, $N_h$ el del estrato $U_h$ y $n_h$ el de la muestra $s_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. Denotaremos por $f_h = \frac{n_h}{N_h}$ el tamaño relativo de la muestra.
+
+    \paragraph{}
+    Definiremos $n_h$ como el tamaño de la muestra \emph{$h$-ésima}. Esto también puede entenderse como el tamaño de la muestra global ponderado por un determinado peso $w_h$  dependiente de la estrategia de afijación escogida. Esto se puede definir matemáticamente como:
+
+    \begin{align}
+      n_h = n * w_h
+    \end{align}
+
+    \paragraph{}
+    Donde $w_h$ depende del tipo de afijación sobre el cual se esté trabajando. En las ecuaciones \eqref{eq:w_h_proporcional} y \eqref{eq:w_h_min_var} se muestra para los casos de \emph{afijación proporcional} y \emph{mínima varianza} respectivamente.
+
+    \begin{align}
+    \label{eq:w_h_proporcional}
+      w_h &= W_h &\text{(afijación proporcional)}\\
+    \label{eq:w_h_min_var}
+      w_h &= \frac{N_h\sigma_h^*}{\sum\limits_{i=1}^LN_i\sigma_i^*}&\text{(afijación mínima varianza)}
+    \end{align}
+
+    \paragraph{}
+    Para tamaños de estrato $N_h$ grandes es fácil comprobar que se cumple la propiedad $\frac{N_h}{N_h -1} \simeq 1$, lo cual permite simplificar la ecuación del tamaño de la muestra.
+
+    \paragraph{}
+    Puesto que lo que se pretende demostrar en este trabajo es la ecuación para estimar el tamaño $n$ de la muestra global, fijando un error de estimación $B$ a un nivel de confianza $k$, esto es equivalente a despejar el valor $n$ en la ecuación \eqref{eq:variance_fixed_bound}.
+
+    \begin{align}
+    \label{eq:variance_fixed_bound}
+      B^2 = k^2Var(\widehat{\theta})
+    \end{align}
+
+
+  \section{Demostración para \emph{m.a.s.} sin reemplazamiento.}
+
+    \paragraph{}
+    Bajo la hipótesis de \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible de la media poblacional $\mu$, un buen estimador del total poblacional es $\widehat{\Tau}_{m.a.s.} = \sum\limits_{h=1}^n\sum\limits_{k \in s_h} \frac{y_k}{n_h}N_h$. Para el caso del estimador de la proporción poblacional, un buen estimador es $\widehat{\mu}_{m.a.s.} = \frac{\widehat{\Tau}_{m.a.s.}}{N}$.
+
+    \paragraph{}
+    En las ecuaciones \eqref{eq:tau_var} y \eqref{eq:mu_var} se definen respectivamente las varianza del estimador del total poblacional $\widehat{\Tau}$ así como la proporción poblacional $\widehat{\mu}$.
+
+    \begin{align}
+      \label{eq:tau_var}
+      \begin{split}
+        Var(\widehat{\Tau}_{m.a.s.}) &= \\
+        &= \sum\limits_{h=1}^L\frac{N_h^2 (1-f_h)\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\frac{(N_h^2- N_hn_h)\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}
+      \end{split} \\
+    \label{eq:mu_var}
+      \begin{split}
+        Var(\widehat{\mu}_{m.a.s.}) &=\\
+        &= Var\left(\frac{\widehat{\Tau}_{m.a.s.}}{N}\right) \\
+        &= \frac{Var\left(\widehat{\Tau}_{m.a.s.}\right)}{N^2} \\
+        &= \frac{\sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}}{N^2} \\
+        &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n_h}- \frac{W_h^2}{N_h}\right)\sigma_h^{*2}
+      \end{split}
+    \end{align}
+
+    \paragraph{}
+    Para llegar a la expresión que relacione el tamaño de la muestra global $n$ con el error de estimación $B$ a un nivel de confianza $(1-\alpha)$, definiremos $k = Z_{1-\alpha/2}$, siendo $Z_{1-\alpha/2 }$ el valor crítico $(1-\alpha/2)$ de la \emph{distribución normal estándar $N(0,1)$}. Además, nos apoyaremos en la ecuación \eqref{eq:variance_fixed_bound} y la estimación de la varianza de la ecuación \eqref{eq:mu_var}.
+
+    \begin{align}
+      B^2 &= k^2Var(\widehat{\mu}_{m.a.s.}) \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n_h}- \frac{W_h^2}{N_h}\right)\sigma_h^{*2} \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n*w_h}- \frac{W_h^2}{N_h}\right)\sigma_h^{*2} \\
+      \frac{B^2}{k^2} + \sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2} &= \sum\limits_{h=1}^L\frac{W_h^2}{n*w_h}\sigma_h^{*2} \\
+      n &= \frac{\sum\limits_{h=1}^L\frac{W_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2} + \sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2}} \\
+      n &= \frac{\sum\limits_{h=1}^L\frac{W_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{Z_{1-\frac{\alpha}{2}}^2} + \sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2}}
+    \end{align}
+
+  \section{Demostración para \emph{m.a.s.} con reemplazamiento}
+
+    \paragraph{}
+    Bajo la hipótesis de \emph{muestreo aleatorio simple con reeemplazamiento (m.a.s.con)}, a partir del cual se pretende obtener una aproximación lo más precisa posible de la media poblacional $\mu$, un buen estimador del total poblacional es $\widehat{\Tau}_{m.a.s.con} = \sum\limits_{h=1}^n\sum\limits_{k \in s_h} \frac{y_k}{n_h}N_h$. Para el caso del estimador de la proporción poblacional, un buen estimador es $\widehat{\mu}_{m.a.s.con} = \frac{\widehat{\Tau}_{m.a.s.con}}{N}$.
+
+    \paragraph{}
+    En las ecuaciones \eqref{eq:tau_var_con} y \eqref{eq:mu_var_con} se definen respectivamente las varianza del estimador del total poblacional $\widehat{\Tau}$  así como la proporción poblacional $\widehat{\mu}$.
+
+    \begin{align}
+    \label{eq:tau_var_con}
+      Var(\widehat{\Tau}_{m.a.s.con}) &= \sum\limits_{h=1}^L\frac{N_h^2\sigma_h^{2}}{n_h} \\
+    \label{eq:mu_var_con}
+      \begin{split}
+        Var(\widehat{\mu}_{m.a.s.con}) &=\\
+        &= Var\left(\frac{\widehat{\Tau}_{m.a.s.con}}{N}\right) \\
+        &= \frac{Var\left(\widehat{\Tau}_{m.a.s.con}\right)}{N^2} \\
+        &= \frac{\sum\limits_{h=1}^L\frac{N_h^2\sigma_h^{2}}{n_h}}{N^2} \\
+        &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{n_h}
+      \end{split}
+    \end{align}
+
+
+    \paragraph{}
+    Para llegar a la expresión que relacione el tamaño de la muestra global $n$ con el error de estimación $B$ a un nivel de confianza $(1-\alpha)$, definiremos $k = Z_{1-\alpha/2}$, siendo $Z_{1-\alpha/2 }$ el valor crítico $(1-\alpha/2)$ de la \emph{distribución normal estándar $N(0,1)$}. Además, nos apoyaremos en la ecuación \eqref{eq:variance_fixed_bound} y la estimación de la varianza de la ecuación \eqref{eq:mu_var}.
+
+
+    \begin{align}
+      B^2 &= k^2Var(\widehat{\mu}_{m.a.s.con}) \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{n_h}\\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{n*w_h}\\
+      n &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{B^2*w_h}k^2\\
+      n &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{B^2*w_h}\left(Z_{1-\frac{\alpha}{2}}\right)^2
+    \end{align}
 
   %-----------------------------
   %  Bibliographic references
