@@ -15,64 +15,74 @@
   %  TEXT
   %-----------------------------
 
-  \section{Introducción}
+  \abstract{En este trabajo se desarrollan las expresiones del tamaño de muestra $n$ global necesario para poder asegurar que el error de estimación se aproxima a $B$ con un nivel de confianza $k$ para los estimadores del total poblacional $\widehat{\Tau}$ y la proporción poblacional $\widehat{P}$.}
 
-    \paragraph{}
-    [TODO ]
+  \section{Introducción}
 
     \paragraph{}
     Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L = \{1, ...,k,...,N\} $ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, podemos denotar a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$
 
     \paragraph{}
-    En este caso, tal y como se ha indicado anteriormente se va a presuponer la utilización del método \emph{m.a.s.} sobre cada estrato, caracterizado porque el tamaño de la muestra se fija \emph{a-priori} y se seleccionan las observaciones \emph{sin reemplazamiento}, es decir, una vez seleccionada una observación, esta desaparece del conjunto de candidatos a aparecer en la muestra. Por tanto, no hay observaciones repetidas en la muestra.
+    En este caso, tal y como se ha indicado anteriormente, se va a presuponer la utilización de \emph{muestreo aleatorio simple (m.a.s.)} sobre cada estrato. Esta método de muestreo se caracteriza por la fijación  \emph{a-priori} del tamaño de muestras y la selección de observaciones \emph{sin reemplazamiento}. Esto es equivalente a decir que una vez seleccionada una observación esta desaparece del conjunto de candidatas a aparecer en la muestra. Por tanto, no hay observaciones repetidas en la muestra.
 
     \paragraph{}
-    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum\limits_U y_k$.
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum_U y_k$.
 
     \paragraph{}
-    Denotaremos por $P$ a la proporción poblacional de una determinada variable de interés $Y$ de carácter binario denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que la proporción poblacional se define como $P = \frac{\sum\limits_U y_k}{N}$.
+    Denotaremos por $P$ a la proporción poblacional de una determinada variable de interés $Y$ de carácter binario denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que la proporción poblacional se define como $P = \frac{\sum_U y_k}{N}$.
 
     \paragraph{}
-    Bajo la hipótesis de \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible tanto del total poblacional $\Tau$ como de la proporción poblacional $P$. Para ello, es necesario apoyarse en los valores del tamaño de la población $N$, el del estrato $U_h$ como $N_h$ y el de la muestra $s_h$ denotado por $n_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. También se define el tamaño relativo de la muestra como $f_h = \frac{n_h}{N_h}$. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum\limits_{s_h} \frac{y_k}{W_h}$. Para el caso del estimador de la proporción poblacional, un buen estimador es $\widehat{P} = \frac{\sum\limits_{s_h} \frac{y_k}{W_h}}{N}$
+    Bajo la hipótesis de \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible tanto del total poblacional $\Tau$ como de la proporción poblacional $P$. Para ello, es necesario apoyarse en los valores del tamaño de la población $N$, el del estrato $U_h$ como $N_h$ y el de la muestra $s_h$ denotado por $n_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. También se define el tamaño relativo de la muestra como $f_h = \frac{n_h}{N_h}$. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum_{s_h} \frac{y_k}{W_h}$. Para el caso del estimador de la proporción poblacional, un buen estimador es $\widehat{P} = \frac{\sum_{s_h} \frac{y_k}{W_h}}{N}$.
 
     \paragraph{}
-    La varianza del estimador del total total se define a continuación:
+    En las ecuaciones \eqref{eq:tau_var} y \eqref{eq:p_var} se definen respectivamente las varianza del estimador del total poblacional $\widehat{\Tau}$  así como la proporción poblacional $\widehat{P}$. Estas se han desarrollado de tal manera que $n_h$ quede lo menos relacionada posible con el resto de variables, lo cual será útil para las demostraciones de las secciones \ref{sec:dem1} y \ref{sec:dem2}.
 
     \begin{align}
-      Var(\widehat{\Tau}) &= \\
-      &= \sum\limits_{h=1}^L\frac{N_h^2 (1-f_h)\sigma_h^{*2}}{n_h} \\
-      &= \sum\limits_{h=1}^L\frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{*2}}{n_h} \\
-      &= \sum\limits_{h=1}^L\frac{(N_h^2- N_hn_h)\sigma_h^{*2}}{n_h} \\
-      &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}
+      \label{eq:tau_var}
+      \begin{split}
+        Var(\widehat{\Tau}) &= \\
+        &= \sum\limits_{h=1}^L\frac{N_h^2 (1-f_h)\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\frac{(N_h^2- N_hn_h)\sigma_h^{*2}}{n_h} \\
+        &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}
+      \end{split} \\ \\
+    \label{eq:p_var}
+      \begin{split}
+        Var(\widehat{P}) &=\\
+        &= \sum\limits_{h=1}^LW_h^2\frac{1-f_h}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+        &= \sum\limits_{h=1}^LW_h^2\frac{1-\frac{n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+        &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{W_h^2n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+        &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{n_h*N_h}{N^2}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+        &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n_h} - \frac{N_h}{N^2}\right)\frac{N_h}{N_h-1}P_h(1-P_h)
+      \end{split}
     \end{align}
 
     \paragraph{}
-    La varianza del estimador de la proporción total se define a continuación:
+    Tal y como se ha indicado anteriormente, $n_h$ se refiere al tamaño de la muestra \emph{$h$-ésima}. Entoces, este puede definirse como el tamaño de la muestra global ponderado por un determinado peso $w_h$  dependiente de la estrategia de afijación escogida. Esto se puede definir matemáticamente como:
 
     \begin{align}
-      Var(\widehat{P}) &=\\
-      &= \sum\limits_{h=1}^LW_h^2\frac{1-f_h}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
-      &= \sum\limits_{h=1}^LW_h^2\frac{1-\frac{n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
-      &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{W_h^2n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
-      &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{n_h*N_h}{N^2}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
-      &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n_h} - \frac{N_h}{N^2}\right)\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      n_h = n * w_h
     \end{align}
 
-    \begin{align}
-      w_h = \frac{n_h}{n}
-    \end{align}
+    \paragraph{}
+    Donde $w_h$ se define tal y como se indica en las ecuaciones \eqref{eq:w_h_proporcional} y \eqref{eq:w_h_min_var} para los casos de \emph{afijación proporcional} y \emph{mínima varianza} respectivamente.
 
     \begin{align}
-      \frac{N_h}{N_h -1} \simeq 1
-    \end{align}
-
-    \begin{align}
-      \frac{B^2}{k^2} = Var(\widehat{\theta})
-    \end{align}
-
-    \begin{align}
+    \label{eq:w_h_proporcional}
       w_h &= W_h &\text{(afijación proporcional)}\\
+    \label{eq:w_h_min_var}
       w_h &= \frac{N_h\sigma_h^*}{\sum\limits_{i=1}^LN_i\sigma_i^*}&\text{(afijación mínima varianza)}
+    \end{align}
+
+    \paragraph{}
+    Para tamaños de estrato $N_h$ grandes es fácil comprobar que se cumple la propiedad $\frac{N_h}{N_h -1} \simeq 1$, lo cual permite simplificar la ecuación del tamaño de la muestra.
+
+    \paragraph{}
+    Puesto que lo que se pretende demostrar en este trabajo es la ecuación para estimar el tamaño $n$ de la muestra global, fijando un error de estimación $B$ a un nivel de confianza $k$, esto es equivalente a despejar el valor $n$ en la ecuación \eqref{eq:variance_fixed_bound}.
+
+    \begin{align}
+    \label{eq:variance_fixed_bound}
+      \frac{B^2}{k^2} = Var(\widehat{\theta})
     \end{align}
 
     \paragraph{}
@@ -81,8 +91,9 @@
 
   \section{Demostración para estimador del total poblacional $\widehat{\Tau}$}
   \label{sec:dem1}
+
     \paragraph{}
-    [TODO ]
+    Para la demostración basta con desarrollar la función \eqref{eq:variance_fixed_bound} utilizando la varianza del estimador del total poblacional $\widehat{\Tau}$ definida en la ecuación \eqref{eq:tau_var} para posteriormente dejar la fórmula en función de $n$.
 
     \begin{align}
       \frac{B^2}{k^2} &= Var(\widehat{\Tau}) \\
@@ -92,11 +103,11 @@
       n &=  \frac{\sum\limits_{h=1}^L\frac{N_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2} + \sum\limits_{h=1}^L N_h \sigma_h^{*2}} \\
     \end{align}
 
-  \section{Demostración para estimador de proporción poblacional $\widehat{P}$}
+  \section{Demostración para estimador de la proporción poblacional $\widehat{P}$}
   \label{sec:dem2}
 
     \paragraph{}
-    [TODO ]
+    Al igual que para la demostración anterior, en este caso también basta con desarrollar la función \eqref{eq:variance_fixed_bound}, pero en este caso utilizando la varianza del estimador de la proporcion poblacional $\widehat{P}$ definida en la ecuación \eqref{eq:p_var} para posteriormente dejar la fórmula en función de $n$.
 
     \begin{align}
       \frac{B^2}{k^2} &= Var(\widehat{P}) \\
@@ -114,7 +125,8 @@
       } \\
     \end{align}
 
-
+  \paragraph{}
+  Cabe destacar que tal y como se ha indicado al principio del trabajo, en ambos casos se puede simplificar el operando $\frac{N_h}{N_h-1}$ cuando $N_h$ toma valores suficientemente grandes. Además, el valor $w_h$ se debe fijar según las ecuaciones \eqref{eq:w_h_proporcional} y \eqref{eq:w_h_min_var} según corresponda.
 
   %-----------------------------
   %  Bibliographic references
