@@ -36,25 +36,27 @@
     Bajo la hipótesis de \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible tanto del total poblacional $\Tau$ como de la proporción poblacional $P$. Para ello, es necesario apoyarse en los valores del tamaño de la población $N$, el del estrato $U_h$ como $N_h$ y el de la muestra $s_h$ denotado por $n_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. También se define el tamaño relativo de la muestra como $f_h = \frac{n_h}{N_h}$. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum\limits_{s_h} \frac{y_k}{W_h}$. Para el caso del estimador de la proporción poblacional, un buen estimador es $\widehat{P} = \frac{\sum\limits_{s_h} \frac{y_k}{W_h}}{N}$
 
     \paragraph{}
-    La varianza del estimador del total sobre cada estrato se define a continuación:
+    La varianza del estimador del total total se define a continuación:
 
     \begin{align}
-      Var(\widehat{\Tau_h}) &= \\
-      &=\frac{N_h^2 (1-f_h)\sigma_h^{2*}}{n_h} \\
-      &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2*}}{n_h} \\
-      &= \frac{(N_h^2- N_hn_h)\sigma_h^{2*}}{n_h} \\
-      &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*}
+      Var(\widehat{\Tau}) &= \\
+      &= \sum\limits_{h=1}^L\frac{N_h^2 (1-f_h)\sigma_h^{*2}}{n_h} \\
+      &= \sum\limits_{h=1}^L\frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{*2}}{n_h} \\
+      &= \sum\limits_{h=1}^L\frac{(N_h^2- N_hn_h)\sigma_h^{*2}}{n_h} \\
+      &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}
     \end{align}
 
     \paragraph{}
-    La varianza del estimador de la proporción sobre cada estrato se define a continuación:
+    La varianza del estimador de la proporción total se define a continuación:
 
     \begin{align}
-      Var(\widehat{P_h}) &= \\
-      &= ... \\
-      &= \frac{N_h-n_h}{n_h*(N_h-1)}\widehat{P_h} * (1-\widehat{P_h})
+      Var(\widehat{P}) &=\\
+      &= \sum\limits_{h=1}^LW_h^2\frac{1-f_h}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      &= \sum\limits_{h=1}^LW_h^2\frac{1-\frac{n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{W_h^2n_h}{N_h}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      &= \sum\limits_{h=1}^L\frac{W_h^2-\frac{n_h*N_h}{N^2}}{n_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      &= \sum\limits_{h=1}^L\left(\frac{W_h^2}{n_h} - \frac{N_h}{N^2}\right)\frac{N_h}{N_h-1}P_h(1-P_h) \\
     \end{align}
-
 
     \begin{align}
       w_h = \frac{n_h}{n}
@@ -65,11 +67,7 @@
     \end{align}
 
     \begin{align}
-      B^2 = k^2 \sum\limits_{h=1}^L W_h^2 \frac{(1-f_h)}{n_h}\sigma_h^{*2}
-    \end{align}
-
-    \begin{align}
-      n_h = n*w_h
+      \frac{B^2}{k^2} = Var(\widehat{\theta})
     \end{align}
 
     \begin{align}
@@ -77,43 +75,43 @@
       w_h &= \frac{N_h\sigma_h^*}{\sum\limits_{i=1}^LN_i\sigma_i^*}&\text{(afijación mínima varianza)}
     \end{align}
 
-    \begin{align}
-      B^2 &= k^2 \sum\limits_{h=1}^L W_h^2 \frac{(1-f_h)}{n_h}\sigma_h^{*2} \\
-      \frac{B^2}{k^2} &=  \sum\limits_{h=1}^L W_h^2 \frac{(1-f_h)}{n*w_h}\sigma_h^{*2} \\
-      \frac{B^2}{k^2} &=  \frac{\sum\limits_{h=1}^L W_h^2 \frac{(1-f_h)}{w_h}\sigma_h^{*2}}{n} \\
-      n &=  \frac{\sum\limits_{h=1}^L W_h^2 \frac{(1-f_h)}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2}} \\
-      n &= \frac{\sum\limits_{h=1}^L\frac{W_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2}+\sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2}}
-    \end{align}
-
     \paragraph{}
     Una vez desarrollada la ecuación que a partir de la cual determinar el tamaño de muestra global $n$, fijado un erro de estimación $b$ a una confianza de nivel $k$, el siguiente paso es particularizar esto para estimadores concretos. Esto consiste simplemente en la substitución del valor de la varianza por el del estimador en cuestión. En la sección \ref{sec:dem1} se realiza dicha demostración para el caso del total poblacional $\widehat{\Tau_h}$ y en la sección \ref{sec:dem2} se realiza para el caso del estimador de proporción poblacional $\widehat{P_h}$.
 
 
-  \section{Demostración para estimador del total poblacional $\widehat{\Tau_h}$}
+  \section{Demostración para estimador del total poblacional $\widehat{\Tau}$}
   \label{sec:dem1}
     \paragraph{}
     [TODO ]
 
     \begin{align}
-      n &= \\
-      &= \frac{\sum\limits_{h=1}^L\frac{W_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2}+\sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2}} \\
-      &= ... \\
-      &= \frac{\sum\limits_{h=1}^{L} \frac{N_h^2}{w_h}\sigma_h^{*2}}
-              {\frac{B^2}{K^2}+\sum\limits_{h=1}^{L}\sigma_h^* N_h}
+      \frac{B^2}{k^2} &= Var(\widehat{\Tau}) \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2} \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\left(\frac{N_h^2}{n*w_h}- N_h\right)\sigma_h^{*2} \\
+      \frac{B^2}{k^2} + \sum\limits_{h=1}^L N_h \sigma_h^{*2} &=  \sum\limits_{h=1}^L\frac{N_h^2}{n*w_h}\sigma_h^{*2} \\
+      n &=  \frac{\sum\limits_{h=1}^L\frac{N_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2} + \sum\limits_{h=1}^L N_h \sigma_h^{*2}} \\
     \end{align}
 
-  \section{Demostración para estimador de proporción poblacional $\widehat{P_h}$}
+  \section{Demostración para estimador de proporción poblacional $\widehat{P}$}
   \label{sec:dem2}
 
     \paragraph{}
     [TODO ]
 
     \begin{align}
-      n &= \\
-      &= \frac{\sum\limits_{h=1}^L\frac{W_h^2}{w_h}\sigma_h^{*2}}{\frac{B^2}{k^2}+\sum\limits_{h=1}^L\frac{W_h^2}{N_h}\sigma_h^{*2}} \\
-      &= ... \\
-      &= \frac{\sum\limits_{h=1}^L \frac{W_h^2}{w_h}\frac{N_h}{N_h-1}P_h(1-P_h)}
-              {\frac{B^2}{K^2} + \sum\limits_{h=1}^LP_h(1-P_h)\frac{W_h}{N}\frac{N_h}{N_h-1}}
+      \frac{B^2}{k^2} &= Var(\widehat{P}) \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\frac{W_h^2}{n_h} - \frac{N_h}{N^2}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      \frac{B^2}{k^2} &= \sum\limits_{h=1}^L\frac{W_h^2}{n*w_h} - \frac{N_h}{N^2}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      \frac{B^2}{k^2} + \sum\limits_{h=1}^L\frac{N_h}{N^2}\frac{N_h}{N_h-1}P_h(1-P_h) &= \sum\limits_{h=1}^L\frac{W_h^2}{n*w_h}\frac{N_h}{N_h-1}P_h(1-P_h) \\
+      n &= \frac{
+        \sum\limits_{h=1}^L\frac{W_h^2}{w_h}\frac{N_h}{N_h-1}P_h(1-P_h)
+      }{
+        \frac{B^2}{k^2} + \sum\limits_{h=1}^L\frac{N_h}{N^2}\frac{N_h}{N_h-1}P_h(1-P_h)
+      } \\
+      n &= \frac{
+        \sum\limits_{h=1}^L\frac{W_h^2}{w_h}\frac{N_h}{N_h-1}P_h(1-P_h)
+      }{\frac{B^2}{k^2} + \sum\limits_{h=1}^L\frac{W_h}{N}\frac{N_h}{N_h-1}P_h(1-P_h)
+      } \\
     \end{align}
 
 
