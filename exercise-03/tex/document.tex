@@ -15,17 +15,63 @@
   %  TEXT
   %-----------------------------
 
+  \abstract{En este trabajo se ha realizado la demostración de que en la situación particular de diseño \emph{m.a.s.} y la estimación parámetro total poblacional $\widehat{\Tau}$, para cometer un error de estimación global $B$ basta con fijar el mismo error de estimación $b$ en cada uno de los estratos, siendo $b$ igual al cociente entre el error global $B$ y la raíz cuadrada del número de estratos $L$.}
+
   \section{Introducción}
 
     \paragraph{}
-    [TODO]
-
-  \section{Demostrar que en la situación particular de diseño \emph{m.a.s.} y parámetro total poblacional, para cometer un error de estimación global $B$ tengo que fijar el mismo error de estimación $b$ en cada uno de los estratos, siendo $b$ igual al cociente entre el error global $B$ y la raíz cuadrada del número de estratos $L$.}
+    Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L = \{1, ...,k,...,N\} $ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, podemos denotar a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$
 
     \paragraph{}
-    [TODO]
+    En este caso, tal y como se ha indicado anteriormente, se va a presuponer la utilización de \emph{muestreo aleatorio simple (m.a.s.)} sobre cada estrato. Esta método de muestreo se caracteriza por la fijación  \emph{a-priori} del tamaño de muestras y la selección de observaciones \emph{sin reemplazamiento}. Esto es equivalente a decir que una vez seleccionada una observación esta desaparece del conjunto de candidatas a aparecer en la muestra. Por tanto, no hay observaciones repetidas en la muestra.
 
+    \paragraph{}
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum_U y_k$.
 
+    \paragraph{}
+    Bajo la hipótesis de \emph{muestreo aleatorio simple (m.a.s.)}, a partir del cual se pretende obtener una aproximación lo más precisa posible tanto del total poblacional $\Tau$ como de la proporción poblacional $P$. Para ello, es necesario apoyarse en los valores del tamaño de la población $N$, el del estrato $U_h$ como $N_h$ y el de la muestra $s_h$ denotado por $n_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. También se define el tamaño relativo de la muestra como $f_h = \frac{n_h}{N_h}$. Entonces, en este caso un buen estimador del total poblacional es el $\pi$-estimador $\widehat{\Tau} = \sum_{s_h} \frac{y_k}{W_h}$.
+
+    \paragraph{}
+    En las ecuaciones \eqref{eq:tau_h_var} y \eqref{eq:tau_var} se definen las varianzas de los estimadores del total poblacional en el estrato $h$ denotado $\widehat{\Tau_h}$ y total poblacional denotado por $\widehat{\Tau}$. Nótese la propiedad de adictivadad de la varianza sobre los estratos para el estimador del total poblacional, ya que será de gran utilidad en la demostración.
+
+    \begin{align}
+    \label{eq:tau_h_var}
+      Var(\widehat{\Tau_h}) &=\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2} \\
+    \label{eq:tau_var}
+      Var(\widehat{\Tau}) &= \sum\limits_{h=1}^L Var(\widehat{\Tau_h})=  \sum\limits_{h=1}^L\left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{*2}
+    \end{align}
+
+    \paragraph{}
+    Para la demostración nos apoyaremos en la ecuación \eqref{eq:variance_fixed_bound}, que relaciona el error de estimación $B$ a un nivel de confianza $k$, con la varianza del estimador $\widehat{\theta}$.
+
+    \begin{align}
+    \label{eq:variance_fixed_bound}
+      B^2 = k^2Var(\widehat{\theta})
+    \end{align}
+
+  \section{Demostración}
+
+    \paragraph{}
+    Para demostrar la propiedad de que para conseguir un error de estimación $B$ con un nivel de confianza $k$ en \emph{m.a.s.} para el estimador del total poblacional, es necesario fijar en cada estrato el error de estimación en el valor $b$ se ha utilizado la propiedad de adictividad de la varianza que se da en este caso concreto.
+
+    \begin{align}
+      b_h = b = \frac{B}{\sqrt{L}} && \forall h \in \{1,...,L\}
+    \end{align}
+
+    \begin{align}
+      B^2 = k^2Var(\widehat{\Tau}) && b_h^2 = \frac{B^2}{L} = k^2Var(\widehat{\Tau_h})
+    \end{align}
+
+    \paragraph{}
+    Debido a la propiedad de adictividad de la varianza para el caso del total poblacional se cumple la siguiente igualdad:
+
+    \begin{align}
+      Var(\widehat{\Tau}) &= \sum\limits_{h=1}^L Var(\widehat{\Tau_h})\\
+      k^2Var(\widehat{\Tau}) &= \sum\limits_{h=1}^L k^2Var(\widehat{\Tau_h})\\
+      B^2 &= \sum\limits_{h=1}^L b_h^2 \\
+      B^2 &= B^2\sum\limits_{h=1}^L \frac{1}{L} \\
+      B &= B \\
+    \end{align}
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
