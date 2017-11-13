@@ -15,16 +15,119 @@
   %  TEXT
   %-----------------------------
 
+  \abstract{En este trabajo se ha desarrollado la demostración de la expresión de los pesos $w_h\quad h \in \{1,...,L\}$ siendo $L$ el número de estratos, fijando el tamaño $n$ de muestra global \emph{a-priori}. Esto se ha llevado a cabo bajo la el método de \emph{muestreo aleatorio simple con reeemplazamiento (m.a.s.con)} y siguiendo la estrategia de \emph{afijación de mínima varianza}.}
+
   \section{Introducción}
 
     \paragraph{}
-    [TODO]
-
-  \section{Considerando \emph{m.a.s.} con reemplazamiento en $L$ estratos, fijado un tamaño de muestra global $n$, encontrar las expresiones de los pesos $w_i$ considerando afijación de mínima varianza.}
+    Denotaremos por $U = U_1 \cup ... \cup U_h \cup... \cup U_L = \{1, ...,k,...,N\} $ a la población, para la cual tenemos una división en $L$ estratos denotando por $U_h$ al estrato $h \in \{1,..., L\}$. Sea $I_h$ el conjunto de índices de las observaciones seleccionadas en el estrato $U_h$ y $s_h$ la muestra extraida de dicho estrato. Por tanto, nos referiremos a la muestra global por $s = s_1 \cup ... \cup s_h \cup ... \cup s_L$
 
     \paragraph{}
-    [TODO]
+    Tal y como se ha indicado anteriormente se va a presuponer la utilización del método \emph{m.a.s.con} sobre cada estrato, caracterizado porque el tamaño de la muestra se fija \emph{a-priori} y se seleccionan las observaciones \emph{con reemplazamiento}, es decir, cada observación puede ser seleccionada más de una vez. Por tanto, puede haber observaciones repetidas en la muestra.
 
+    \paragraph{}
+    Denotaremos por $\Tau$ al total poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que el total poblacional se define como $\Tau = \sum\limits_U y_k$.
+
+    \paragraph{}
+    Denotaremos por $\mu$ a la media poblacional de una determinada variable de interés $Y$ denotando como $y_k \quad \forall k \in U$ al \emph{$k$-ésimo} valor de $Y$. Es fácil entender por tanto que la media poblacional se define como $\mu = \frac{\sum_U y_k}{N} = \frac{\Tau}{N}$.
+
+
+    \paragraph{}
+    Las expresiones de los estimadores insesgados $\widehat{\Tau}_{m.a.s.con}$ y $\widehat{\mu}_{m.a.s.con}$ se muestran en las ecuaciones \eqref{eq:tau_con} y \eqref{eq:mu_con} respectivamente.
+
+    \begin{align}
+    \label{eq:tau_con}
+      \widehat{\Tau}_{m.a.s.con} &= \sum\limits_{h=1}^L\sum\limits_{k \in s_h}\frac{y_kN_h}{n_h} \\
+    \label{eq:mu_con}
+      \widehat{\mu}_{m.a.s.con} &= \frac{\widehat{\Tau}_{m.a.s.con}}{N}\\
+    \end{align}
+
+
+    \paragraph{}
+    Las expresiones de la varianza de los estimadores $\widehat{\Tau}_{m.a.s.con}$ y $\widehat{\mu}_{m.a.s.con}$ se muestran en las ecuaciones \eqref{eq:tau_var_con} y \eqref{eq:mu_var_con} respectivamente.
+
+    \begin{align}
+    \label{eq:tau_var_con}
+      Var(\widehat{\Tau}_{m.a.s.con}) &= \sum\limits_{h=1}^L\frac{N_h^2\sigma_h^{2}}{n_h} \\
+    \label{eq:mu_var_con}
+      \begin{split}
+        Var(\widehat{\mu}_{m.a.s.con}) &=\\
+        &= Var\left(\frac{\widehat{\Tau}_{m.a.s.con}}{N}\right) \\
+        &= \frac{Var\left(\widehat{\Tau}_{m.a.s.con}\right)}{N^2} \\
+        &= \frac{\sum\limits_{h=1}^L\frac{N_h^2\sigma_h^{2}}{n_h}}{N^2} \\
+        &= \sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{n_h}
+      \end{split}
+    \end{align}
+
+    \paragraph{}
+    Sea $N$ el tamaño de la población, $N_h$ el del estrato $U_h$ y $n_h$ el de la muestra $s_h$. El tamaño relativo del estrato se define como $W_h = \frac{N_h}{N}$. Denotaremos por $f_h = \frac{n_h}{N_h}$ el tamaño relativo de la muestra.
+
+    \paragraph{}
+    Definiremos $n_h$ como el tamaño de la muestra \emph{$h$-ésima}. Esto también puede entenderse como el tamaño de la muestra global ponderado por un determinado peso $w_h$  dependiente de la estrategia de afijación escogida. Esto se puede definir matemáticamente como:
+
+    \begin{align}
+      n_h = n * w_h
+    \end{align}
+
+    \paragraph{}
+    Por tanto, para la obteción del la expressión de $w_h$, primeramente el problema se presenta como la obtención del tamaño óptimo $n_h \quad h \in \{1,..., L\}$ que minimice la varianza global (\textbf{afijación de mínima varianza}) de la estimación, suponiendo como valor conocido $N$ para la obtención del mejor estimador de un determinado estadístico. Definiremos la función $\phi(n_1, ..., n_L)$ como:
+
+    \begin{equation}
+      \phi(n_1, ..., n_L) = Var(\widehat{\theta}) + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)
+    \end{equation}
+
+    \paragraph{}
+    Entonces el objetivo es minimizar dicha función, de tal manera que se minimiza la varianza global de la estimación $\widehat{\theta}$. Esto es equivalente a buscar los valores que hagan mínima dicha función, es decir:
+
+    \begin{equation}
+      min_{n_h}\{\phi(n_1, ..., n_L)\}
+    \end{equation}
+
+  \section{Demostración}
+
+    \paragraph{}
+    El primer paso es derivar la función $\phi(n_1, ..., n_L)$ respecto del valor que se pretende minimizar:
+
+    \begin{align}
+    \label{eq:derivate_1}
+      \begin{split}
+        \frac{\partial \phi(n_1, ..., n_L)}{\partial n_h} &= \\
+        &= \frac{\partial\left( Var(\widehat{\mu}_{m.a.s.con})
+        + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
+        &= \frac{\partial\left( \left(\sum\limits_{h=1}^L\frac{W_h^2\sigma_h^{2}}{n_h}\right)
+        + \lambda \left( \sum\limits_{h=1}^L n_h - n\right)\right) }{\partial n_h} \\
+        &= \frac{-W_h^2 \sigma_h^{2*}}{n_h^2} +\lambda \\
+        &= 0
+      \end{split}
+    \end{align}
+
+    \paragraph{}
+    Puesto que $n_1 + ... + n_L = n$ se obtiene:
+
+    \begin{align}
+      \sqrt{\lambda} &= \frac{\sum\limits_{h=1}^L W_h \sigma_h}{n}
+    \end{align}
+
+    \paragraph{}
+    Lo siguiente es despejar el valor $n_h$, es decir, el tamaño de cada estrato:
+
+    \begin{align}
+      \begin{split}
+        n_h &= \\
+        &= \frac{W_h \sigma_h}{\sqrt{\lambda}}\\
+        &= \frac{W_h \sigma_h}{\frac{\sum\limits_{h=1}^L W_h \sigma_h }{n}}\\
+        &= n\frac{\frac{N_h}{N} \sigma_h}{\sum\limits_{h=1}^L \frac{N_h}{N} \sigma_h }\\
+        &= n\frac{N_h \sigma_h}{\sum\limits_{h=1}^L N_h \sigma_h }
+      \end{split}
+    \end{align}
+
+    \paragraph{}
+    Por último, para despejar el valor $w_h$, basta con aplicar la propiedad $w_h=\frac{n_h}{n}$:
+
+    \begin{align}
+      n_h &= n\frac{N_h \sigma_h}{\sum\limits_{h=1}^L N_h \sigma_h } \\
+      w = \frac{n_h}{n} &=\frac{N_h \sigma_h}{\sum\limits_{h=1}^L N_h \sigma_h }
+    \end{align}
   %-----------------------------
   %  Bibliographic references
   %-----------------------------

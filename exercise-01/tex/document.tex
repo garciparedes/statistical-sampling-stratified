@@ -35,11 +35,13 @@
     La varianza del estimador del total sobre cada estrato se define a continuación:
 
     \begin{align}
-      Var(\widehat{\Tau_h}) &= \\
-      &=\frac{N_h^2 (1-f_h)\sigma_h^{2*}}{n_h} \\
-      &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2*}}{n_h} \\
-      &= \frac{(N_h^2- N_hn_h)\sigma_h^{2*}}{n_h} \\
-      &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*} \\
+      \begin{split}
+        Var(\widehat{\Tau_h}) &= \\
+        &=\frac{N_h^2 (1-f_h)\sigma_h^{2*}}{n_h} \\
+        &= \frac{N_h^2 (1-\frac{n_h}{N_h})\sigma_h^{2*}}{n_h} \\
+        &= \frac{(N_h^2- N_hn_h)\sigma_h^{2*}}{n_h} \\
+        &= \left(\frac{N_h^2}{n_h}- N_h\right)\sigma_h^{2*}
+      \end{split}
     \end{align}
 
     \paragraph{}
